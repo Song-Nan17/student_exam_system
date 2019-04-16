@@ -14,6 +14,9 @@ public class QuerySubjectInfo {
             case "1.2.2":
                 querySpecifiedSubject();
                 break;
+            case "1.2.3":
+                queryByTeacher();
+                break;
         }
 
     }
@@ -31,6 +34,16 @@ public class QuerySubjectInfo {
         String sql = "SELECT s1.id, s1.subject, s2.name AS teacher FROM subject AS s1\n" +
                 "LEFT JOIN teacher AS s2 ON s1.teacher = s2.id \n" +
                 "WHERE subject = \"" + subject + "\";";
+        Select select = new Select();
+        select.selectSubject(sql);
+    }
+
+    public static void queryByTeacher() throws SQLException {
+        System.out.println("请输入老师姓名：");
+        String teacher = Input.getInput();
+        String sql = "SELECT s1.id, s1.subject, s2.name AS teacher FROM subject AS s1\n" +
+                "LEFT JOIN teacher AS s2 ON s1.teacher = s2.id \n" +
+                "WHERE s2.name = \"" + teacher + "\";";
         Select select = new Select();
         select.selectSubject(sql);
     }
