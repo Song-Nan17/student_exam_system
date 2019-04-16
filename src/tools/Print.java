@@ -33,7 +33,8 @@ public class Print {
                 "4. 删除\n" +
                 "\t4.1 删除指定学生\n" +
                 "\t4.3 删除指定课程\n" +
-                "\t4.3 删除指定老师";
+                "\t4.3 删除指定老师\n" +
+                "5. 退出";
         System.out.println(menu);
     }
 
