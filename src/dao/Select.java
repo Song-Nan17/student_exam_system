@@ -1,6 +1,7 @@
 package dao;
 
 import model.Account;
+import model.Score;
 import model.Student;
 
 import java.sql.Connection;
@@ -27,9 +28,9 @@ public class Select {
         return new Account(id, password);
     }
 
-    public List<Student> selectAllStudentsInfo() throws SQLException {
+    public List<Student> selectStudentsInfo(String sql) throws SQLException {
         List<Student> students = new ArrayList<>();
-        ResultSet resultSet = connectMySql.executeSQL(statement, "SELECT * FROM student");
+        ResultSet resultSet = connectMySql.executeSQL(statement, sql);
         while (resultSet.next()) {
             String id = resultSet.getString("stu_id");
             String name = resultSet.getString("name");
@@ -39,5 +40,18 @@ public class Select {
         }
         connectMySql.closeConnect(resultSet, statement, connection);
         return students;
+    }
+
+    public List<Score> selectScores(String sql) throws SQLException {
+        List<Score> scores = new ArrayList<>();
+        ResultSet resultSet = connectMySql.executeSQL(statement, sql);
+        while (resultSet.next()) {
+            String name = resultSet.getString("name");
+            String subject = resultSet.getString("subject");
+            double score = resultSet.getDouble("score");
+            scores.add(new Score(name, subject, score));
+        }
+        connectMySql.closeConnect(resultSet, statement, connection);
+        return scores;
     }
 }
