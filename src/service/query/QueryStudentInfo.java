@@ -15,6 +15,10 @@ public class QueryStudentInfo {
                 break;
             case "1.1.2":
                 querySpecifiedStudentInfo();
+                break;
+            case "1.1.3":
+                QueryScore.queryByTeacher();
+                break;
         }
     }
 
