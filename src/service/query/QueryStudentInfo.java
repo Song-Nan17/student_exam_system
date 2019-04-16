@@ -1,11 +1,9 @@
 package service.query;
 
 import dao.Select;
-import model.Student;
 import tools.Input;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class QueryStudentInfo {
     public static void query(String choice) throws SQLException {
@@ -28,8 +26,7 @@ public class QueryStudentInfo {
     public static void queryAllStudentInfo() throws SQLException {
         Select select = new Select();
         String sql = "SELECT * FROM student";
-        List<Student> students = select.selectStudentsInfo(sql);
-        students.forEach(student -> System.out.println(student.toString()));
+        select.selectPerson(sql);
     }
 
     public static void querySpecifiedStudentInfo() throws SQLException {
@@ -37,10 +34,7 @@ public class QueryStudentInfo {
         String name = Input.getInput();
         Select select = new Select();
         String sql = "SELECT * FROM student where name = \"" + name + "\"";
-        List<Student> students = select.selectStudentsInfo(sql);
-        if (students.size() > 0) {
-            students.forEach(student -> System.out.println(student.toString()));
-            QueryScore.queryByStudent(name);
-        }
+        select.selectPerson(sql);
+        QueryScore.queryByStudent(name);
     }
 }
