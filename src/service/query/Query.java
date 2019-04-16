@@ -8,6 +8,9 @@ public class Query {
             case "1.1":
                 QueryStudentInfo.query(choice);
                 break;
+            case "1.2":
+                QuerySubjectInfo.query(choice);
+                break;
         }
     }
 }

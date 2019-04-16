@@ -3,6 +3,7 @@ package dao;
 import model.Account;
 import model.Score;
 import model.Student;
+import model.Subject;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -53,5 +54,18 @@ public class Select {
         }
         connectMySql.closeConnect(resultSet, statement, connection);
         return scores;
+    }
+
+    public void selectSubject(String sql) throws SQLException {
+        List<Subject> subjects = new ArrayList<>();
+        ResultSet resultSet = connectMySql.executeSQL(statement, sql);
+        while (resultSet.next()) {
+            String id = resultSet.getString("id");
+            String subject = resultSet.getString("subject");
+            String teacher = resultSet.getString("teacher");
+            subjects.add(new Subject(id, subject, teacher));
+        }
+        subjects.forEach(subject -> System.out.println(subject.toString()));
+        connectMySql.closeConnect(resultSet, statement, connection);
     }
 }
