@@ -63,4 +63,13 @@ public class QueryTools {
         List<Subject> subjects = subjectDao.selectSubjectByName(name);
         subjects.forEach(subject -> System.out.println(subject));
     }
+
+    public static void querySubjectByTeacherName() {
+        System.out.println("请输入课程名称：");
+        String name = Input.getInput();
+        SubjectDao subjectDao = new SubjectDao();
+        List<Teacher> teachers = TeacherSubjectDao.selectByTeacherName(name);
+        teachers.forEach(teacher -> teacher.getSubjects()
+                .forEach(subject -> System.out.println(subject)));
+    }
 }

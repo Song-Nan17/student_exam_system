@@ -29,6 +29,9 @@ public class Tools {
             case "1.2.2":
                 QueryTools.querySubjectByItsName();
                 break;
+            case "1.2.3":
+                QueryTools.querySubjectByTeacherName();
+                break;
         }
     }
 }
