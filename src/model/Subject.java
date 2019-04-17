@@ -1,13 +1,18 @@
 package model;
 
+import java.util.List;
+
 public class Subject {
     private String id;
-    private String subject;
-    private String teacher;
+    private String name;
+    private Teacher teacher;
 
-    public Subject(String id, String subject, String teacher) {
+    public Subject() {
+    }
+
+    public Subject(String id, String name, Teacher teacher) {
         this.id = id;
-        this.subject = subject;
+        this.name = name;
         this.teacher = teacher;
     }
 
@@ -19,24 +24,24 @@ public class Subject {
         this.id = id;
     }
 
-    public String getSubject() {
-        return this.subject;
+    public String getName() {
+        return this.name;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTeacher() {
+    public Teacher getTeacher() {
         return this.teacher;
     }
 
-    public void setTeacher(String teacher) {
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 
     @Override
     public String toString() {
-        return "课程编号：" + this.id + ", 课程名：" + this.subject + ", 授课老师：" + this.teacher;
+        return "课程编号：" + this.id + ", 课程名：" + this.name + ", 授课老师：" + this.teacher.getName();
     }
 }

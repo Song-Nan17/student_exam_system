@@ -48,12 +48,12 @@ public class Select {
     public List<Score> selectScores(String sql) throws SQLException {
         List<Score> scores = new ArrayList<>();
         ResultSet resultSet = connectMySql.executeSQL(statement, sql);
-        while (resultSet.next()) {
-            String name = resultSet.getString("name");
-            String subject = resultSet.getString("subject");
-            double score = resultSet.getDouble("score");
-            scores.add(new Score(name, subject, score));
-        }
+//        while (resultSet.next()) {
+//            String name = resultSet.getString("name");
+//            String subject = resultSet.getString("subject");
+//            double score = resultSet.getDouble("score");
+//            scores.add(new Score(name, subject, score));
+//        }
         connectMySql.closeConnect(resultSet, statement, connection);
         return scores;
     }
@@ -65,7 +65,7 @@ public class Select {
             String id = resultSet.getString("id");
             String subject = resultSet.getString("subject");
             String teacher = resultSet.getString("teacher");
-            subjects.add(new Subject(id, subject, teacher));
+//            subjects.add(new Subject(id, subject, teacher));
         }
         subjects.forEach(subject -> System.out.println(subject.toString()));
         connectMySql.closeConnect(resultSet, statement, connection);

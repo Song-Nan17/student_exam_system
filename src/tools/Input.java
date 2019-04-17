@@ -7,4 +7,8 @@ public class Input {
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
+
+    public static String[] formatSigninInput() {
+        return getInput().split(":");
+    }
 }

@@ -1,6 +1,10 @@
 package model;
 
 public class Teacher extends Person {
+
+    public Teacher() {
+    }
+
     public Teacher(String id, String name, int age, String sex) {
         super(id, name, age, sex);
     }

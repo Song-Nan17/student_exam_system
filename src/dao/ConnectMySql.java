@@ -3,7 +3,7 @@ package dao;
 import java.sql.*;
 
 public class ConnectMySql {
-    private static final String URL = "jdbc:mysql://localhost:3306/exam_system?useSSL=false";
+    private static final String URL = "jdbc:mysql://localhost:3306/student_exam_system?useSSL=false";
     private static final String NAME = "root";
     private static final String PASSWORD = "766413";
 
