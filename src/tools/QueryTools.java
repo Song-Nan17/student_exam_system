@@ -11,8 +11,8 @@ public class QueryTools {
 
     public static void queryAllStudentsInfo() {
         StudentDao studentDao = new StudentDao();
-        List<Student> students = studentDao.selectAllStudent();
-        students.forEach(student -> System.out.println(student.toString()));
+        studentDao.selectAllStudent()
+                .forEach(student -> System.out.println(student.toString()));
     }
 
     public static void queryStudentScoreByName() {
@@ -52,8 +52,8 @@ public class QueryTools {
 
     public static void queryAllSubjectInfo() {
         SubjectDao subjectDao = new SubjectDao();
-        List<Subject> subjects = subjectDao.selectAllSubject();
-        subjects.forEach(subject -> System.out.println(subject));
+        subjectDao.selectAllSubject()
+                .forEach(subject -> System.out.println(subject));
     }
 
     public static void querySubjectByItsName() {
