@@ -8,7 +8,7 @@ public class Input {
         return input.nextLine();
     }
 
-    public static String[] formatSigninInput() {
+    public static String[] formatLoginInput() {
         return getInput().split(":");
     }
 }

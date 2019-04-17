@@ -16,13 +16,24 @@ public class SubjectDao {
     final Connection connection = connectMySql.getConnect();
     final Statement statement = connectMySql.getStatement(connection);
 
-    public Subject subjectSubjectById(String id) {
+    public Subject selectSubjectById(String id) {
         String sql = "SELECT * FROM subject WHERE id = \"" + id + "\";";
-        return Optional.ofNullable(selectSubjectInfo(sql).get(0))
+        return Optional.ofNullable(selectSubject(sql).get(0))
                 .orElseThrow(IndexOutOfBoundsException::new);
     }
 
-    public List<Subject> selectSubjectInfo(String sql) {
+
+    public List<Subject> selectSubjectByName(String name) {
+        String sql = "SELECT * FROM subject WHERE name = \"" + name + "\";";
+        return selectSubject(sql);
+    }
+
+    public List<Subject> selectByTeacherId(String teacherId) {
+        String sql = "SELECT * FROM subject WHERE teacher_id = \"" + teacherId + "\";";
+        return selectSubject(sql);
+    }
+
+    public List<Subject> selectSubject(String sql) {
         List<Subject> subjects = new ArrayList<>();
         ResultSet resultSet = connectMySql.executeSQL(statement, sql);
         try {
@@ -31,8 +42,7 @@ public class SubjectDao {
                 String name = resultSet.getString("name");
                 String teacherId = resultSet.getString("teacher_id");
                 TeacherDao teacherDao = new TeacherDao();
-                Teacher teacher = teacherDao.selectTeacherInfoById(teacherId);
-                System.out.println(teacher.toString());
+                Teacher teacher = teacherDao.selectTeacherById(teacherId);
                 subjects.add(new Subject(id, name, teacher));
             }
         } catch (SQLException e) {
@@ -42,5 +52,4 @@ public class SubjectDao {
         }
         return subjects;
     }
-
 }

@@ -8,23 +8,31 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class StudentDao {
     final ConnectMySql connectMySql = new ConnectMySql();
     final Connection connection = connectMySql.getConnect();
     final Statement statement = connectMySql.getStatement(connection);
 
-    public List<Student> selectAllStudentInfo() {
+    public List<Student> selectAllStudent() {
         String sql = "SELECT * FROM student";
-        return selectStudentsInfo(sql);
+        List<Student> students = selectStudents(sql);
+        return students;
     }
 
-    public List<Student> selectStudentInfoByName(String name) {
+    public List<Student> selectStudentByName(String name) {
         String sql = "SELECT * FROM student WHERE name = \"" + name + "\";";
-        return selectStudentsInfo(sql);
+        return selectStudents(sql);
     }
 
-    public List<Student> selectStudentsInfo(String sql) {
+    public Student selectStudentById(String id) {
+        String sql = "SELECT * FROM student WHERE student_id = \"" + id + "\";";
+        return Optional.ofNullable(selectStudents(sql).get(0))
+                .orElseThrow(IndexOutOfBoundsException::new);
+    }
+
+    public List<Student> selectStudents(String sql) {
         List<Student> students = new ArrayList<>();
         ResultSet resultSet = connectMySql.executeSQL(statement, sql);
         try {
@@ -40,6 +48,4 @@ public class StudentDao {
         }
         return students;
     }
-
-
 }

@@ -34,8 +34,15 @@ public class Print {
                 "\t4.1 删除指定学生\n" +
                 "\t4.3 删除指定课程\n" +
                 "\t4.3 删除指定老师\n" +
-                "5. 退出";
+                "0. 退出";
         System.out.println(menu);
+    }
+
+    public static void printSecondMenu() {
+        String secondMenu = "\n感谢使用，请选择：\n" +
+                "1 返回菜单\n" +
+                "0 退出";
+        System.out.println(secondMenu);
     }
 
 }

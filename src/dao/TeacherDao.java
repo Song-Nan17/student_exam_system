@@ -1,6 +1,5 @@
 package dao;
 
-import model.Student;
 import model.Teacher;
 
 import java.sql.Connection;
@@ -16,23 +15,18 @@ public class TeacherDao {
     final Connection connection = connectMySql.getConnect();
     final Statement statement = connectMySql.getStatement(connection);
 
-    public Teacher selectTeacherInfoById(String id) {
+    public Teacher selectTeacherById(String id) {
         String sql = "SELECT * FROM teacher WHERE teacher_id = \"" + id + "\"";
-        return Optional.ofNullable(selectTeacherInfo(sql).get(0))
+        return Optional.ofNullable(selectTeacher(sql).get(0))
                 .orElseThrow(IndexOutOfBoundsException::new);
     }
 
-    public List<Teacher> selectTeacherInofoByName(String name) {
-        String sql = "SELECT * FROM teacher WHERE teacher_id = \"" + name + "\"";
-        return selectTeacherInfo(sql);
+    public List<Teacher> selectTeacherByName(String name) {
+        String sql = "SELECT * FROM teacher WHERE name = \"" + name + "\"";
+        return selectTeacher(sql);
     }
 
-    public List<Teacher> selectAllTeacherInofo() {
-        String sql = "SELECT * FROM teacher ";
-        return selectTeacherInfo(sql);
-    }
-
-    public List<Teacher> selectTeacherInfo(String sql) {
+    public List<Teacher> selectTeacher(String sql) {
         List<Teacher> teachers = new ArrayList<>();
         ResultSet resultSet = connectMySql.executeSQL(statement, sql);
         try {
@@ -48,5 +42,4 @@ public class TeacherDao {
         }
         return teachers;
     }
-
 }
