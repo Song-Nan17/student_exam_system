@@ -72,4 +72,10 @@ public class QueryTools {
         teachers.forEach(teacher -> teacher.getSubjects()
                 .forEach(subject -> System.out.println(subject)));
     }
+
+    public static void queryAllTeacher() {
+        TeacherDao teacherDao = new TeacherDao();
+        teacherDao.selectAllTeacher()
+                .forEach(teacher -> System.out.println(teacher));
+    }
 }

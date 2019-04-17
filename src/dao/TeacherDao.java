@@ -15,6 +15,11 @@ public class TeacherDao {
     final Connection connection = connectMySql.getConnect();
     final Statement statement = connectMySql.getStatement(connection);
 
+    public List<Teacher> selectAllTeacher() {
+        String sql = "SELECT * FROM teacher";
+        return selectTeacher(sql);
+    }
+
     public Teacher selectTeacherById(String id) {
         String sql = "SELECT * FROM teacher WHERE teacher_id = \"" + id + "\"";
         return Optional.ofNullable(selectTeacher(sql).get(0))
