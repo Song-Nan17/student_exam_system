@@ -1,9 +1,6 @@
 package tools;
 
-import dao.StudentDao;
-import dao.StudentScoreDao;
-import dao.SubjectScoreDao;
-import dao.TeacherSubjectDao;
+import dao.*;
 import model.Student;
 import model.Subject;
 import model.Teacher;
@@ -51,5 +48,11 @@ public class QueryTools {
                 subject.getScores().forEach(score ->
                         System.out.println(score.getStudent() + ", 成绩：" + score.getScore())
                 ));
+    }
+
+    public static void queryAllSubjectInfo() {
+        SubjectDao subjectDao = new SubjectDao();
+        List<Subject> subjects = subjectDao.selectAllSubject();
+        subjects.forEach(subject -> System.out.println(subject));
     }
 }

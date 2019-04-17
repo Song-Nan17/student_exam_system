@@ -16,6 +16,11 @@ public class SubjectDao {
     final Connection connection = connectMySql.getConnect();
     final Statement statement = connectMySql.getStatement(connection);
 
+    public List<Subject> selectAllSubject() {
+        String sql = "SELECT * FROM subject;";
+        return selectSubject(sql);
+    }
+
     public Subject selectSubjectById(String id) {
         String sql = "SELECT * FROM subject WHERE id = \"" + id + "\";";
         return Optional.ofNullable(selectSubject(sql).get(0))

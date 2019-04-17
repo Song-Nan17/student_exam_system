@@ -23,6 +23,9 @@ public class Tools {
             case "1.1.4":
                 QueryTools.queryStudentScoreBySubjectName();
                 break;
+            case "1.2.1":
+                QueryTools.queryAllSubjectInfo();
+                break;
         }
     }
 }
