@@ -78,4 +78,12 @@ public class QueryTools {
         teacherDao.selectAllTeacher()
                 .forEach(teacher -> System.out.println(teacher));
     }
+
+    public static void queyTeacherByName() {
+        System.out.println("请输入老师姓名：");
+        String name = Input.getInput();
+        TeacherDao teacherDao = new TeacherDao();
+        teacherDao.selectTeacherByName(name)
+                .forEach(teacher -> System.out.println(teacher));
+    }
 }
