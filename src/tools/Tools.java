@@ -26,6 +26,9 @@ public class Tools {
             case "1.2.1":
                 QueryTools.queryAllSubjectInfo();
                 break;
+            case "1.2.2":
+                QueryTools.querySubjectByItsName();
+                break;
         }
     }
 }

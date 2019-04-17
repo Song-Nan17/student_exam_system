@@ -55,4 +55,12 @@ public class QueryTools {
         List<Subject> subjects = subjectDao.selectAllSubject();
         subjects.forEach(subject -> System.out.println(subject));
     }
+
+    public static void querySubjectByItsName() {
+        System.out.println("请输入课程名：");
+        String name = Input.getInput();
+        SubjectDao subjectDao = new SubjectDao();
+        List<Subject> subjects = subjectDao.selectSubjectByName(name);
+        subjects.forEach(subject -> System.out.println(subject));
+    }
 }
