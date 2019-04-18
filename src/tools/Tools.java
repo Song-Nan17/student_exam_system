@@ -8,6 +8,9 @@ public class Tools {
                 break;
             case "2":
                 insertOperation(choice);
+            case "3":
+                updateOperation(choice);
+                break;
         }
     }
 
@@ -56,6 +59,14 @@ public class Tools {
                 break;
             case "2.4":
                 InsertTools.insertScore();
+                break;
+        }
+    }
+
+    public static void updateOperation(String choice) {
+        switch (choice) {
+            case "3.1":
+                UpdateTools.updateStudentById();
                 break;
         }
     }

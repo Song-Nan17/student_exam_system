@@ -10,8 +10,17 @@ public class StudentService {
         return students.size() > 0;
     }
 
+    public static boolean isExist(Student student) {
+        return student.getName() != null;
+    }
+
     public static boolean isInsert(Student student) {
         StudentDao studentDao = new StudentDao();
         return studentDao.insertStudent(student) == 1;
+    }
+
+    public static boolean isUpdate(Student student) {
+        StudentDao studentDao = new StudentDao();
+        return studentDao.update(student) == 1;
     }
 }

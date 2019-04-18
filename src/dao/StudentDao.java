@@ -1,6 +1,7 @@
 package dao;
 
 import model.Student;
+import service.StudentService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -25,9 +26,14 @@ public class StudentDao {
         return selectStudents(sql);
     }
 
-    public List<Student> selectStudentById(String id) {
+    public Student selectStudentById(String id) {
+        Student student = new Student();
         String sql = "SELECT * FROM student WHERE student_id = \"" + id + "\";";
-        return selectStudents(sql);
+        List<Student> students = selectStudents(sql);
+        if (StudentService.isExist(students)) {
+            student = students.get(0);
+        }
+        return student;
 
     }
 
@@ -53,6 +59,14 @@ public class StudentDao {
     public int insertStudent(Student student) {
         String sql = "INSERT INTO student (student_id, name, age, sex) VALUES ";
         sql += "(\"" + student.getId() + "\",\"" + student.getName() + "\"," + student.getAge() + ",\"" + student.getSex() + "\");";
+        return connectMySql.updateSql(sql, statement, connection);
+    }
+
+    public int update(Student student) {
+        String sql = "UPDATE student SET student_id = \"" +
+                student.getId() + "\", name = \"" + student.getName() +
+                "\", age = " + student.getAge() + ", sex = \"" + student.getSex() +
+                "\" WHERE student_id = \"" + student.getId() + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }
 }
