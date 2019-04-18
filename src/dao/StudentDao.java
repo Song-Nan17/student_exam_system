@@ -63,9 +63,10 @@ public class StudentDao {
     }
 
     public int update(Student student) {
-        String sql = "UPDATE student SET student_id = \"" +
-                student.getId() + "\", name = \"" + student.getName() +
-                "\", age = " + student.getAge() + ", sex = \"" + student.getSex() +
+        String sql = "UPDATE student SET student_id = \"" + student.getId() +
+                "\", name = \"" + student.getName() +
+                "\", age = " + student.getAge() +
+                ", sex = \"" + student.getSex() +
                 "\" WHERE student_id = \"" + student.getId() + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }

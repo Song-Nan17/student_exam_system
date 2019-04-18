@@ -1,6 +1,7 @@
 package dao;
 
 import model.Teacher;
+import service.TeacherService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,9 +22,13 @@ public class TeacherDao {
     }
 
     public Teacher selectTeacherById(String id) {
+        Teacher teacher = new Teacher();
         String sql = "SELECT * FROM teacher WHERE teacher_id = \"" + id + "\"";
-        return Optional.ofNullable(selectTeacher(sql).get(0))
-                .orElseThrow(IndexOutOfBoundsException::new);
+        List<Teacher> teachers = selectTeacher(sql);
+        if (TeacherService.isExist(teachers)) {
+            teacher = teachers.get(0);
+        }
+        return teacher;
     }
 
     public List<Teacher> selectTeacherByName(String name) {
@@ -53,6 +58,15 @@ public class TeacherDao {
     public int insertTeacher(Teacher teacher) {
         String sql = "INSERT INTO teacher (teacher_id, name, age, sex) VALUES ";
         sql += "(\"" + teacher.getId() + "\",\"" + teacher.getName() + "\"," + teacher.getAge() + ",\"" + teacher.getSex() + "\");";
+        return connectMySql.updateSql(sql, statement, connection);
+    }
+
+    public int update(Teacher teacher) {
+        String sql = "UPDATE teacher SET teacher_id = \"" + teacher.getId()
+                + "\", name = \"" + teacher.getName() +
+                "\", age = " + teacher.getAge() +
+                ", sex = \"" + teacher.getSex() +
+                "\" WHERE teacher_id = \"" + teacher.getId() + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }
 }
