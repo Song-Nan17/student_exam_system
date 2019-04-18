@@ -74,6 +74,9 @@ public class Tools {
             case "3.3":
                 UpdateTools.updateTeacherById();
                 break;
+            case "3.4":
+                UpdateTools.updateScore();
+                break;
         }
     }
 }

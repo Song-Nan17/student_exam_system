@@ -16,11 +16,11 @@ public class TeacherService {
 
     public static boolean isInsert(Teacher teacher) {
         TeacherDao teacherDao = new TeacherDao();
-        return teacherDao.insertTeacher(teacher) == 1;
+        return teacherDao.insertTeacher(teacher) > 0;
     }
 
     public static boolean isUpdate(Teacher teacher) {
         TeacherDao teacherDao = new TeacherDao();
-        return teacherDao.update(teacher) == 1;
+        return teacherDao.update(teacher) > 0;
     }
 }

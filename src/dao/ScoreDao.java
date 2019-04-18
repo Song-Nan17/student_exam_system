@@ -37,10 +37,10 @@ public class ScoreDao {
                 double score = resultSet.getDouble("score");
                 StudentDao studentDao = new StudentDao();
                 Student student = studentDao.selectStudentById(studentId);
-                    SubjectDao subjectDao = new SubjectDao();
-                    Subject subject = subjectDao.selectSubjectById(subjectId);
-                    scores.add(new Score(student, subject, score));
-                }
+                SubjectDao subjectDao = new SubjectDao();
+                Subject subject = subjectDao.selectSubjectById(subjectId);
+                scores.add(new Score(student, subject, score));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -52,6 +52,15 @@ public class ScoreDao {
     public int insertScore(Score score) {
         String sql = "INSERT INTO score (student_id, subject_id, score) VALUES ";
         sql += "(\"" + score.getStudent().getId() + "\", \"" + score.getStudent().getId() + "\", \"" + score.getScore() + "\");";
+        return connectMySql.updateSql(sql, statement, connection);
+    }
+
+    public int update(Score score) {
+        String sql = "UPDATE score SET student_id = \"" + score.getStudent().getId() +
+                "\", subject_id = \"" + score.getSubject().getId() +
+                "\", score = " + score.getScore() +
+                " WHERE student_id = \"" + score.getStudent().getId() +
+                "\" AND subject_id = \"" + score.getSubject().getId() + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }
 }

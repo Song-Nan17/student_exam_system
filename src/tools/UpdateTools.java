@@ -3,9 +3,11 @@ package tools;
 import dao.StudentDao;
 import dao.SubjectDao;
 import dao.TeacherDao;
+import model.Score;
 import model.Student;
 import model.Subject;
 import model.Teacher;
+import service.ScoreService;
 import service.StudentService;
 import service.SubjectService;
 import service.TeacherService;
@@ -65,6 +67,16 @@ public class UpdateTools {
             }
         } else {
             System.out.println("老师[编号：" + id + "]不存在！");
+        }
+    }
+
+    public static void updateScore() {
+        System.out.println("请输入修改后的成绩信息(例如：学号：1，课程编号：3，成绩：88)：");
+        Score score = Input.generateScoreByByInput();
+        if (ScoreService.isUpdate(score)) {
+            System.out.println("成绩修改成功！");
+        } else {
+            System.out.println("成绩修改失败！");
         }
     }
 }

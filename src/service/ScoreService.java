@@ -8,4 +8,9 @@ public class ScoreService {
         ScoreDao scoreDao = new ScoreDao();
         return scoreDao.insertScore(score) == 1;
     }
+
+    public static boolean isUpdate(Score score) {
+        ScoreDao scoreDao = new ScoreDao();
+        return scoreDao.update(score) > 0;
+    }
 }

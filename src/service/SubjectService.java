@@ -16,11 +16,11 @@ public class SubjectService {
 
     public static boolean isInsert(Subject subject) {
         SubjectDao subjectDao = new SubjectDao();
-        return subjectDao.insertSubject(subject) == 1;
+        return subjectDao.insertSubject(subject) > 0;
     }
 
     public static boolean isUpdate(Subject subject) {
         SubjectDao subjectDao = new SubjectDao();
-        return subjectDao.update(subject) == 1;
+        return subjectDao.update(subject) > 0;
     }
 }
