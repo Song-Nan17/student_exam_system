@@ -1,8 +1,10 @@
 package tools;
 
+import model.Score;
 import model.Student;
 import model.Subject;
 import model.Teacher;
+import service.ScoreService;
 import service.StudentService;
 import service.SubjectService;
 import service.TeacherService;
@@ -35,6 +37,16 @@ public class InsertTools {
             System.out.println("添加老师[" + teacher.getName() + teacher.getId() + "]成功！");
         } else {
             System.out.println("添加学生失败！");
+        }
+    }
+
+    public static void insertScore() {
+        System.out.println("请输入学生成绩信息(例如：学号：1，课程编号：3，成绩：88)：");
+        Score score = Input.generateScoreByByInput();
+        if (ScoreService.isInsert(score)) {
+            System.out.println("学生[学号：" + score.getStudent().getId() + "]的学生的成绩添加成功！");
+        } else {
+            System.out.println("添加成绩失败！");
         }
     }
 }

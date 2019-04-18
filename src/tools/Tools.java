@@ -54,6 +54,9 @@ public class Tools {
             case "2.3":
                 InsertTools.insertTeacher();
                 break;
+            case "2.4":
+                InsertTools.insertScore();
+                break;
         }
     }
 }

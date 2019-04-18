@@ -1,5 +1,6 @@
 package tools;
 
+import model.Score;
 import model.Student;
 import model.Subject;
 import model.Teacher;
@@ -45,6 +46,18 @@ public class Input {
         int age = Integer.parseInt(infos.get(infos.indexOf("年龄") + 1));
         String sex = infos.get(infos.indexOf("性别") + 1);
         return new Teacher(id, name, age, sex);
+    }
+
+    public static Score generateScoreByByInput() {
+        List<String> infos = formatInput();
+        String studentId = infos.get(infos.indexOf("学号") + 1);
+        String subjectId = infos.get(infos.indexOf("课程编号") + 1);
+        double score = Double.parseDouble(infos.get(infos.indexOf("成绩") + 1));
+        Student student = new Student();
+        student.setId(studentId);
+        Subject subject = new Subject();
+        subject.setId(subjectId);
+        return new Score(student, subject, score);
     }
 
     public static List<String> formatInput() {
