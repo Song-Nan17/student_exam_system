@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class StudentDao {
     final ConnectMySql connectMySql = new ConnectMySql();
@@ -26,10 +25,10 @@ public class StudentDao {
         return selectStudents(sql);
     }
 
-    public Student selectStudentById(String id) {
+    public List<Student> selectStudentById(String id) {
         String sql = "SELECT * FROM student WHERE student_id = \"" + id + "\";";
-        return Optional.ofNullable(selectStudents(sql).get(0))
-                .orElseThrow(IndexOutOfBoundsException::new);
+        return selectStudents(sql);
+
     }
 
     public List<Student> selectStudents(String sql) {

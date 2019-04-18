@@ -3,6 +3,7 @@ package dao;
 import model.Score;
 import model.Student;
 import model.Subject;
+import service.StudentService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -35,11 +36,11 @@ public class ScoreDao {
                 String subjectId = resultSet.getString("subject_id");
                 double score = resultSet.getDouble("score");
                 StudentDao studentDao = new StudentDao();
-                Student student = studentDao.selectStudentById(studentId);
-                SubjectDao subjectDao = new SubjectDao();
-                Subject subject = subjectDao.selectSubjectById(subjectId);
-                scores.add(new Score(student, subject, score));
-            }
+                Student student = studentDao.selectStudentById(studentId).get(0);
+                    SubjectDao subjectDao = new SubjectDao();
+                    Subject subject = subjectDao.selectSubjectById(subjectId);
+                    scores.add(new Score(student, subject, score));
+                }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

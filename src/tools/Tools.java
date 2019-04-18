@@ -38,7 +38,7 @@ public class Tools {
                 QueryTools.queryAllTeacher();
                 break;
             case "1.3.2":
-                QueryTools.queyTeacherByName();
+                QueryTools.queryTeacherByName();
                 break;
         }
     }
