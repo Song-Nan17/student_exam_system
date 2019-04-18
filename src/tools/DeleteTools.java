@@ -4,7 +4,7 @@ import dao.StudentDao;
 import model.Student;
 import service.StudentService;
 
-public class DeletTools {
+public class DeleteTools {
     public static void deleteStudentById() {
         System.out.println("删除学生之后，该学生信息将不能恢复，是否要继续删除？\n" +
                 "1. 是\n" +

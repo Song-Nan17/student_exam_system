@@ -88,7 +88,7 @@ public class Tools {
     public static void deleteOperation(String choice) {
         switch (choice) {
             case "4.1":
-                DeletTools.deleteStudentById();
+                DeleteTools.deleteStudentById();
                 break;
         }
     }
