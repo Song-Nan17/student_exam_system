@@ -68,4 +68,12 @@ public class TeacherDao {
                 "\" WHERE teacher_id = \"" + teacher.getId() + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }
+
+    public int deleteById(String id) {
+        Teacher teacher = TeacherSubjectDao.selectByTeacherId(id);
+        teacher.getSubjects()
+                .forEach(subject -> new SubjectDao().deleteById(subject.getId()));
+        String sql = "DELETE FROM teacher WHERE teacher_id = \"" + id + "\";";
+        return connectMySql.updateSql(sql, statement, connection);
+    }
 }

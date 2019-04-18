@@ -8,18 +8,17 @@ import java.util.List;
 public class StudentScoreDao {
     public static List<Student> selectByStudentName(String name) {
         List<Student> students = new StudentDao().selectStudentByName(name);
-        students.forEach(student -> {
-            List<Score> scores = new ScoreDao().selectScoreByStudentId(student.getId());
-            student.setScores(scores);
-        });
+        students.forEach(student -> setScores(student));
         return students;
     }
 
     public static Student selectByStudentId(String id) {
-        StudentDao studentDao = new StudentDao();
-        Student student = studentDao.selectStudentById(id);
-        ScoreDao scoreDao = new ScoreDao();
-        List<Score> scores = scoreDao.selectScoreByStudentId(student.getId());
+        Student student = new StudentDao().selectStudentById(id);
+        return setScores(student);
+    }
+
+    public static Student setScores(Student student) {
+        List<Score> scores = new ScoreDao().selectScoreByStudentId(student.getId());
         student.setScores(scores);
         return student;
     }

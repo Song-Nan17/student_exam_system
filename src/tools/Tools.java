@@ -93,6 +93,9 @@ public class Tools {
             case "4.2":
                 DeleteTools.deleteSubjectById();
                 break;
+            case "4.3":
+                DeleteTools.deleteTeacherById();
+                break;
         }
     }
 }

@@ -2,10 +2,13 @@ package tools;
 
 import dao.StudentDao;
 import dao.SubjectDao;
+import dao.TeacherDao;
 import model.Student;
 import model.Subject;
+import model.Teacher;
 import service.StudentService;
 import service.SubjectService;
+import service.TeacherService;
 
 public class DeleteTools {
     public static void deleteStudentById() {
@@ -36,6 +39,23 @@ public class DeleteTools {
             if (SubjectService.isExist(subject)) {
                 new SubjectDao().deleteById(id);
                 System.out.println("删除课程[" + subject.getName() + subject.getId() + "]成功！");
+            } else {
+                System.out.println("课程[编号" + id + "]不存在！");
+            }
+        }
+    }
+
+    public static void deleteTeacherById() {
+        System.out.println("删除老师之后，该老师信息将不能恢复，是否要继续删除？\n" +
+                "1. 是\n" +
+                "2. 否");
+        if (sureToDelete()) {
+            System.out.println("请输入要删除的老师编号：");
+            String id = Input.getInput();
+            Teacher teacher = new TeacherDao().selectTeacherById(id);
+            if (TeacherService.isExist(teacher)) {
+                new TeacherDao().deleteById(id);
+                System.out.println("删除老师[" + teacher.getName() + teacher.getId() + "]成功！");
             } else {
                 System.out.println("课程[编号" + id + "]不存在！");
             }
