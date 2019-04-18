@@ -71,7 +71,10 @@ public class StudentDao {
         return connectMySql.updateSql(sql, statement, connection);
     }
 
-    public int deletStudentById(String id) {
+    public int deleteStudentById(String id) {
+        StudentScoreDao studentScoreDao = new StudentScoreDao();
+        Student student = studentScoreDao.selectByStudentId(id);
+        student.getScores().forEach(score -> new ScoreDao().delete(score));
         String sql = "DELETE FROM student WHERE student_id = \"" + id + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }

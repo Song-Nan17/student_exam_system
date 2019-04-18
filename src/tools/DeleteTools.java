@@ -15,7 +15,7 @@ public class DeleteTools {
             Student student = new StudentDao().selectStudentById(id);
             if (StudentService.isExist(student)) {
                 StudentDao studentDao = new StudentDao();
-                studentDao.deletStudentById(id);
+                studentDao.deleteStudentById(id);
                 System.out.println("删除学生[" + student.getName() + student.getId() + "]成功！");
             }
         }
