@@ -57,4 +57,18 @@ public class SubjectDao {
         }
         return subjects;
     }
+
+    public int insertSubject(Subject subject) {
+        int result = 0;
+        String sql = "INSERT INTO subject (id, name, teacher_id) VALUES ";
+        sql += "(\"" + subject.getId() + "\", \"" + subject.getName() + "\", \"" + subject.getTeacher().getId() + "\");";
+        try {
+            result = statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectMySql.closeUpdateConnect(statement, connection);
+        }
+        return result;
+    }
 }

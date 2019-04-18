@@ -48,6 +48,9 @@ public class Tools {
             case "2.1":
                 InsertTools.insertStudent();
                 break;
+            case "2.2":
+                InsertTools.insertSubject();
+                break;
         }
     }
 }
