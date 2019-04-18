@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class SubjectDao {
     final ConnectMySql connectMySql = new ConnectMySql();
@@ -74,6 +73,13 @@ public class SubjectDao {
                 "\", name = \"" + subject.getName() +
                 "\", teacher_id = \"" + subject.getTeacher().getId() +
                 "\" WHERE id = \"" + subject.getId() + "\";";
+        return connectMySql.updateSql(sql, statement, connection);
+    }
+
+    public int deleteById(String id) {
+        Subject subject = SubjectScoreDao.selectBySubjectId(id);
+        subject.getScores().forEach(score -> new ScoreDao().delete(score));
+        String sql = "DELETE FROM subject WHERE id = \"" + id + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }
 }

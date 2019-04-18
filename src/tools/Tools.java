@@ -90,6 +90,9 @@ public class Tools {
             case "4.1":
                 DeleteTools.deleteStudentById();
                 break;
+            case "4.2":
+                DeleteTools.deleteSubjectById();
+                break;
         }
     }
 }

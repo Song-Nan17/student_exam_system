@@ -16,4 +16,11 @@ public class SubjectScoreDao {
         });
         return subjects;
     }
+
+    public static Subject selectBySubjectId(String id) {
+        Subject subject = new SubjectDao().selectSubjectById(id);
+        List<Score> scores = new ScoreDao().selectScoreBySubjectId(id);
+        subject.setScores(scores);
+        return subject;
+    }
 }
