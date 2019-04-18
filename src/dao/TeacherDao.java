@@ -49,4 +49,10 @@ public class TeacherDao {
         }
         return teachers;
     }
+
+    public int insertTeacher(Teacher teacher) {
+        String sql = "INSERT INTO teacher (teacher_id, name, age, sex) VALUES ";
+        sql += "(\"" + teacher.getId() + "\",\"" + teacher.getName() + "\"," + teacher.getAge() + ",\"" + teacher.getSex() + "\");";
+        return connectMySql.updateSql(sql, statement, connection);
+    }
 }
