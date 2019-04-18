@@ -44,6 +44,8 @@ public class TeacherDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectMySql.closeConnect(resultSet, statement, connection);
         }
         return teachers;
     }

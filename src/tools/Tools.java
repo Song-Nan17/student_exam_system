@@ -6,6 +6,8 @@ public class Tools {
             case "1":
                 queryOperation(choice);
                 break;
+            case "2":
+                insertOperation(choice);
         }
     }
 
@@ -37,6 +39,14 @@ public class Tools {
                 break;
             case "1.3.2":
                 QueryTools.queyTeacherByName();
+                break;
+        }
+    }
+
+    public static void insertOperation(String choice) {
+        switch (choice) {
+            case "2.1":
+                InsertTools.insertStudent();
                 break;
         }
     }

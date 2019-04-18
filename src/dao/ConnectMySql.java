@@ -52,6 +52,10 @@ public class ConnectMySql {
                 e.printStackTrace();
             }
         }
+        closeUpdateConnect(st, conn);
+    }
+
+    public static void closeUpdateConnect(Statement st, Connection conn) {
         if (st != null) {   // 关闭声明
             try {
                 st.close();
