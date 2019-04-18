@@ -38,6 +38,15 @@ public class Input {
         return new Subject(id, name, teacher);
     }
 
+    public static Teacher generateTeacherByInput() {
+        List<String> infos = formatInput();
+        String id = infos.get(infos.indexOf("教师编号") + 1);
+        String name = infos.get(infos.indexOf("姓名") + 1);
+        int age = Integer.parseInt(infos.get(infos.indexOf("年龄") + 1));
+        String sex = infos.get(infos.indexOf("性别") + 1);
+        return new Teacher(id, name, age, sex);
+    }
+
     public static List<String> formatInput() {
         return Arrays.stream(getInput().split("，"))
                 .map(s -> s.split("："))

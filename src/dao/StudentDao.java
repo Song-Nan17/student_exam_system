@@ -52,16 +52,8 @@ public class StudentDao {
     }
 
     public int insertStudent(Student student) {
-        int result = 0;
         String sql = "INSERT INTO student (student_id, name, age, sex) VALUES ";
         sql += "(\"" + student.getId() + "\",\"" + student.getName() + "\"," + student.getAge() + ",\"" + student.getSex() + "\");";
-        try {
-            result = statement.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            connectMySql.closeUpdateConnect(statement, connection);
-        }
-        return result;
+        return connectMySql.updateSql(sql, statement, connection);
     }
 }

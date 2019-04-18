@@ -43,6 +43,17 @@ public class ConnectMySql {
         return rs;
     }
 
+    public int updateSql(String sql, Statement st, Connection conn) {
+        int result = 0;
+        try {
+            result = st.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeUpdateConnect(st, conn);
+        }
+        return result;
+    }
 
     public static void closeConnect(ResultSet rs, Statement st, Connection conn) {
         if (rs != null) {   // 关闭记录集
