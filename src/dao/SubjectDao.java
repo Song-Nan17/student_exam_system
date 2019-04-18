@@ -2,6 +2,7 @@ package dao;
 
 import model.Subject;
 import model.Teacher;
+import service.SubjectService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,9 +23,13 @@ public class SubjectDao {
     }
 
     public Subject selectSubjectById(String id) {
+        Subject subject = new Subject();
         String sql = "SELECT * FROM subject WHERE id = \"" + id + "\";";
-        return Optional.ofNullable(selectSubject(sql).get(0))
-                .orElseThrow(IndexOutOfBoundsException::new);
+        List<Subject> subjects = selectSubject(sql);
+        if (SubjectService.isExist(subjects)) {
+            subject = subjects.get(0);
+        }
+        return subject;
     }
 
 
@@ -61,6 +66,14 @@ public class SubjectDao {
     public int insertSubject(Subject subject) {
         String sql = "INSERT INTO subject (id, name, teacher_id) VALUES ";
         sql += "(\"" + subject.getId() + "\", \"" + subject.getName() + "\", \"" + subject.getTeacher().getId() + "\");";
+        return connectMySql.updateSql(sql, statement, connection);
+    }
+
+    public int update(Subject subject) {
+        String sql = "UPDATE subject SET id = \"" + subject.getId() +
+                "\", name = \"" + subject.getName() +
+                "\", teacher_id = \"" + subject.getTeacher().getId() +
+                "\" WHERE id = \"" + subject.getId() + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }
 }

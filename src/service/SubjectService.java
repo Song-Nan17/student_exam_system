@@ -10,8 +10,17 @@ public class SubjectService {
         return subjects.size() > 0;
     }
 
+    public static boolean isExist(Subject subject) {
+        return subject.getName() != null;
+    }
+
     public static boolean isInsert(Subject subject) {
         SubjectDao subjectDao = new SubjectDao();
         return subjectDao.insertSubject(subject) == 1;
+    }
+
+    public static boolean isUpdate(Subject subject) {
+        SubjectDao subjectDao = new SubjectDao();
+        return subjectDao.update(subject) == 1;
     }
 }

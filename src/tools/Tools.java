@@ -68,6 +68,9 @@ public class Tools {
             case "3.1":
                 UpdateTools.updateStudentById();
                 break;
+            case "3.2":
+                UpdateTools.updateSubjectById();
+                break;
         }
     }
 }
