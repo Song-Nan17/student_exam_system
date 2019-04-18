@@ -16,4 +16,13 @@ public class StudentScoreDao {
         });
         return students;
     }
+
+    public static Student selectByStudentId(String id) {
+        StudentDao studentDao = new StudentDao();
+        Student student = studentDao.selectStudentById(id);
+        ScoreDao scoreDao = new ScoreDao();
+        List<Score> scores = scoreDao.selectScoreByStudentId(student.getId());
+        student.setScores(scores);
+        return student;
+    }
 }
