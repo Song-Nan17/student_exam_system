@@ -11,6 +11,11 @@ public class Tools {
             case "3":
                 updateOperation(choice);
                 break;
+            case "4":
+                deleteOperation(choice);
+                break;
+            default:
+                break;
         }
     }
 
@@ -76,6 +81,14 @@ public class Tools {
                 break;
             case "3.4":
                 UpdateTools.updateScore();
+                break;
+        }
+    }
+
+    public static void deleteOperation(String choice) {
+        switch (choice) {
+            case "4.1":
+                DeletTools.deleteStudentById();
                 break;
         }
     }

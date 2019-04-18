@@ -70,4 +70,9 @@ public class StudentDao {
                 "\" WHERE student_id = \"" + student.getId() + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }
+
+    public int deletStudentById(String id) {
+        String sql = "DELETE FROM student WHERE student_id = \"" + id + "\";";
+        return connectMySql.updateSql(sql, statement, connection);
+    }
 }
