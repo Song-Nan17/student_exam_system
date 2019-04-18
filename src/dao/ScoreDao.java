@@ -63,4 +63,10 @@ public class ScoreDao {
                 "\" AND subject_id = \"" + score.getSubject().getId() + "\";";
         return connectMySql.updateSql(sql, statement, connection);
     }
+
+    public int delete(Score score) {
+        String sql = "DELETE FROM score WHERE student_id = \"" + score.getStudent().getId() +
+                "\" AND subject_id = \"" + score.getSubject().getId() + "\";";
+        return connectMySql.updateSql(sql, statement, connection);
+    }
 }
