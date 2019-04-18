@@ -13,9 +13,8 @@ import java.util.List;
 public class QueryTools {
 
     public static void queryAllStudentsInfo() {
-        StudentDao studentDao = new StudentDao();
-        studentDao.selectAllStudent()
-                .forEach(student -> System.out.println(student.toString()));
+        List<Student> students = new StudentDao().selectAllStudent();
+        students.forEach(student -> System.out.println(student.toString()));
     }
 
     public static void queryStudentScoreByName() {
@@ -40,10 +39,11 @@ public class QueryTools {
         List<Teacher> teachers = TeacherSubjectDao.selectByTeacherName(name);
         if (TeacherService.isExist(teachers)) {
             System.out.println("老师" + name + "的所有学生信息及其成绩如下：");
-            teachers.forEach(teacher ->
-                    teacher.getSubjects().forEach(subject ->
-                            subject.getScores().forEach(score ->
-                                    System.out.println(score.getStudent() + ", 成绩：" + score.getScore())
+            teachers.forEach(teacher -> teacher.getSubjects()
+                    .forEach(subject -> subject.getScores()
+                            .forEach(score -> System.out.println(score.getStudent() +
+                                    ", 课程" + score.getSubject().getName() +
+                                    ", 成绩：" + score.getScore())
                             )));
         } else {
             System.out.println("老师" + name + "不存在");
@@ -66,16 +66,14 @@ public class QueryTools {
     }
 
     public static void queryAllSubjectInfo() {
-        SubjectDao subjectDao = new SubjectDao();
-        subjectDao.selectAllSubject()
-                .forEach(subject -> System.out.println(subject));
+        List<Subject> subjects = new SubjectDao().selectAllSubject();
+        subjects.forEach(subject -> System.out.println(subject));
     }
 
     public static void querySubjectByItsName() {
         System.out.println("请输入课程名：");
         String name = Input.getInput();
-        SubjectDao subjectDao = new SubjectDao();
-        List<Subject> subjects = subjectDao.selectSubjectByName(name);
+        List<Subject> subjects = new SubjectDao().selectSubjectByName(name);
         subjects.forEach(subject -> System.out.println(subject));
     }
 
@@ -92,16 +90,14 @@ public class QueryTools {
     }
 
     public static void queryAllTeacher() {
-        TeacherDao teacherDao = new TeacherDao();
-        teacherDao.selectAllTeacher()
-                .forEach(teacher -> System.out.println(teacher));
+        List<Teacher> teachers = new TeacherDao().selectAllTeacher();
+        teachers.forEach(teacher -> System.out.println(teacher));
     }
 
     public static void queryTeacherByName() {
         System.out.println("请输入老师姓名：");
         String name = Input.getInput();
-        TeacherDao teacherDao = new TeacherDao();
-        List<Teacher> teachers = teacherDao.selectTeacherByName(name);
+        List<Teacher> teachers = new TeacherDao().selectTeacherByName(name);
         if (TeacherService.isExist(teachers)) {
             teachers.forEach(teacher -> System.out.println(teacher));
         } else {

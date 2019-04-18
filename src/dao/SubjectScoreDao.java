@@ -7,11 +7,9 @@ import java.util.List;
 
 public class SubjectScoreDao {
     public static List<Subject> selectBySubjectName(String name) {
-        SubjectDao subjectDao = new SubjectDao();
-        List<Subject> subjects = subjectDao.selectSubjectByName(name);
+        List<Subject> subjects = new SubjectDao().selectSubjectByName(name);
         subjects.forEach(subject -> {
-            ScoreDao scoreDao = new ScoreDao();
-            List<Score> scores = scoreDao.selectScoreBySubjectId(subject.getId());
+            List<Score> scores = new ScoreDao().selectScoreBySubjectId(subject.getId());
             subject.setScores(scores);
         });
         return subjects;

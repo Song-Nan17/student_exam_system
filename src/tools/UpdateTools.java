@@ -21,8 +21,7 @@ public class UpdateTools {
             System.out.println("该生信息为：" + student +
                     "\n请输入修改后的学生信息(例如：学号：1001，姓名： 小明，年龄： 18，性别： 男)：");
             Student newStudent = Input.generateStudentByInput();
-            StudentDao studentDao = new StudentDao();
-            studentDao.update(newStudent);
+            new StudentDao().update(newStudent);
             System.out.println("学生[" + student.getName() + student.getId() + "]的信息修改成功！");
         } else {
             System.out.println("学生[学号：" + id + "]不存在！");
@@ -37,8 +36,7 @@ public class UpdateTools {
             System.out.println("该课程信息为：" + subject +
                     "\n请输入修改后的课程信息(例如：课程编号：3，课程名：英语，授课老师编号：4)：");
             Subject newSubject = Input.generateSubjectByInput();
-            SubjectDao subjectDao = new SubjectDao();
-            subjectDao.update(newSubject);
+            new SubjectDao().update(newSubject);
             System.out.println("课程[" + subject.getName() + subject.getId() + "]的信息修改成功！");
         } else {
             System.out.println("课程[编号：" + id + "]不存在");
@@ -53,8 +51,7 @@ public class UpdateTools {
             System.out.println("该老师的信息为：" + teacher +
                     "\n请输入修改后的老师信息(例如：老师编号：5，姓名：强哥，年龄：33，性别：男)：");
             Teacher newTeacher = Input.generateTeacherByInput();
-            TeacherDao teacherDao = new TeacherDao();
-            teacherDao.update(newTeacher);
+            new TeacherDao().update(newTeacher);
             System.out.println("老师[" + teacher.getName() + teacher.getId() + "]的信息修改成功！");
         } else {
             System.out.println("老师[编号：" + id + "]不存在！");
@@ -64,8 +61,7 @@ public class UpdateTools {
     public static void updateScore() {
         System.out.println("请输入修改后的成绩信息(例如：学号：1，课程编号：3，成绩：88)：");
         Score score = Input.generateScoreByByInput();
-        ScoreDao scoreDao = new ScoreDao();
-        scoreDao.update(score);
+        new ScoreDao().update(score);
         System.out.println("成绩修改成功！");
     }
 }
