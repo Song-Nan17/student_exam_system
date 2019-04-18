@@ -9,7 +9,7 @@ public class DeleteTools {
         System.out.println("删除学生之后，该学生信息将不能恢复，是否要继续删除？\n" +
                 "1. 是\n" +
                 "2. 否");
-        if (sureToDelet()) {
+        if (sureToDelete()) {
             System.out.println("请输入要删除的学生学号：");
             String id = Input.getInput();
             Student student = new StudentDao().selectStudentById(id);
@@ -23,9 +23,7 @@ public class DeleteTools {
         }
     }
 
-    public static boolean sureToDelet() {
+    public static boolean sureToDelete() {
         return Input.getInput().equals("1");
     }
-
-
 }
